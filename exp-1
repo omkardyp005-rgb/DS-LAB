@@ -1,0 +1,208 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int arr[100], n = 0;
+    int arr2[100], n2 = 0;
+    int choice;
+
+    while (true) {
+        cout << "\n----- ARRAY OPERATIONS MENU -----\n";
+        cout << "1. Create Array\n";
+        cout << "2. Display Array\n";
+        cout << "3. Addition of Elements (Sum)\n";
+        cout << "4. Count Even & Odd Numbers\n";
+        cout << "5. Reverse Array\n";
+        cout << "6. Find Maximum Element\n";
+        cout << "7. Find Minimum Element\n";
+        cout << "8. Insert Element\n";
+        cout << "9. Delete Element\n";
+        cout << "10. Merge Another Array\n";
+        cout << "11. Destroy Array\n";
+        cout << "12. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        // 1. Create Array
+        if (choice == 1) {
+            cout << "Enter size of array: ";
+            cin >> n;
+
+            cout << "Enter " << n << " elements:\n";
+            for (int i = 0; i < n; i++) {
+                cin >> arr[i];
+            }
+            cout << "Array created successfully!\n";
+        }
+
+        // 2. Display Array
+        else if (choice == 2) {
+            if (n == 0) {
+                cout << "Array not created / empty!\n";
+            } else {
+                cout << "Array elements are:\n";
+                for (int i = 0; i < n; i++) {
+                    cout << arr[i] << " ";
+                }
+                cout << endl;
+            }
+        }
+
+        // 3. Addition of Elements
+        else if (choice == 3) {
+            if (n == 0) {
+                cout << "Array not created / empty!\n";
+            } else {
+                int sum = 0;
+                for (int i = 0; i < n; i++) sum += arr[i];
+                cout << "Sum of elements = " << sum << endl;
+            }
+        }
+
+        // 4. Count Even & Odd
+        else if (choice == 4) {
+            if (n == 0) {
+                cout << "Array not created / empty!\n";
+            } else {
+                int even = 0, odd = 0;
+                for (int i = 0; i < n; i++) {
+                    if (arr[i] % 2 == 0) even++;
+                    else odd++;
+                }
+                cout << "Even count = " << even << endl;
+                cout << "Odd count  = " << odd << endl;
+            }
+        }
+
+        // 5. Reverse Array
+        else if (choice == 5) {
+            if (n == 0) {
+                cout << "Array not created / empty!\n";
+            } else {
+                int start = 0, end = n - 1;
+                while (start < end) {
+                    int temp = arr[start];
+                    arr[start] = arr[end];
+                    arr[end] = temp;
+                    start++;
+                    end--;
+                }
+                cout << "Array reversed successfully!\n";
+            }
+        }
+
+        // 6. Find Maximum
+        else if (choice == 6) {
+            if (n == 0) {
+                cout << "Array not created / empty!\n";
+            } else {
+                int mx = arr[0];
+                for (int i = 1; i < n; i++) {
+                    if (arr[i] > mx) mx = arr[i];
+                }
+                cout << "Maximum element = " << mx << endl;
+            }
+        }
+
+        // 7. Find Minimum
+        else if (choice == 7) {
+            if (n == 0) {
+                cout << "Array not created / empty!\n";
+            } else {
+                int mn = arr[0];
+                for (int i = 1; i < n; i++) {
+                    if (arr[i] < mn) mn = arr[i];
+                }
+                cout << "Minimum element = " << mn << endl;
+            }
+        }
+
+        // 8. Insert Element
+        else if (choice == 8) {
+            if (n == 0) {
+                cout << "Array not created yet!\n";
+            } else {
+                int pos, value;
+                cout << "Enter position to insert (1 to " << n + 1 << "): ";
+                cin >> pos;
+                cout << "Enter value to insert: ";
+                cin >> value;
+
+                if (pos < 1 || pos > n + 1) {
+                    cout << "Invalid position!\n";
+                } else {
+                    for (int i = n; i >= pos; i--) {
+                        arr[i] = arr[i - 1];
+                    }
+                    arr[pos - 1] = value;
+                    n++;
+                    cout << "Element inserted successfully!\n";
+                }
+            }
+        }
+
+        // 9. Delete Element
+        else if (choice == 9) {
+            if (n == 0) {
+                cout << "Array not created / empty!\n";
+            } else {
+                int pos;
+                cout << "Enter position to delete (1 to " << n << "): ";
+                cin >> pos;
+
+                if (pos < 1 || pos > n) {
+                    cout << "Invalid position!\n";
+                } else {
+                    for (int i = pos - 1; i < n - 1; i++) {
+                        arr[i] = arr[i + 1];
+                    }
+                    n--;
+                    cout << "Element deleted successfully!\n";
+                }
+            }
+        }
+
+        // 10. Merge Another Array
+        else if (choice == 10) {
+            if (n == 0) {
+                cout << "First array not created!\n";
+            } else {
+                cout << "Enter size of second array: ";
+                cin >> n2;
+
+                cout << "Enter " << n2 << " elements:\n";
+                for (int i = 0; i < n2; i++) {
+                    cin >> arr2[i];
+                }
+
+                if (n + n2 > 100) {
+                    cout << "Merge not possible! Array size limit exceeded.\n";
+                } else {
+                    for (int i = 0; i < n2; i++) {
+                        arr[n + i] = arr2[i];
+                    }
+                    n = n + n2;
+                    cout << "Arrays merged successfully!\n";
+                }
+            }
+        }
+
+        // 11. Destroy Array
+        else if (choice == 11) {
+            n = 0;
+            cout << "Array destroyed successfully! (Now empty)\n";
+        }
+
+        // 12. Exit
+        else if (choice == 12) {
+            cout << "Exiting program...\n";
+            break;
+        }
+
+        else {
+            cout << "Invalid choice! Try again.\n";
+        }
+    }
+
+    return 0;
+}
